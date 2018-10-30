@@ -1,14 +1,31 @@
-import React, { Component } from 'react';
-import { Segment} from 'semantic-ui-react'
+import React from 'react';
+import { Segment, List, ListContent} from 'semantic-ui-react'
+import { connect } from 'react-redux';
 
-class InvoiceTotals extends Component {
-  render() {
-    return (
-      <Segment>
-        <p>21.98</p>
-      </Segment>
-    );
-  }
+const InvoiceTotals = (items) => {
+  let taxRate = 0.05
+  let subtotal = 0
+  items.items.forEach((item) => {
+    subtotal+=item.lineCost 
+    console.log(subtotal)
+  })
+  let tax = subtotal*taxRate
+  let total = subtotal+tax
+  return (
+    <Segment>
+      <List>
+        <ListContent>Subtotal: {subtotal}</ListContent>
+        <ListContent>Tax: {tax}</ListContent>
+        <ListContent>Total: {total}</ListContent>
+      </List>
+    </Segment>
+  );
 }
 
-export default InvoiceTotals
+const mapStateToProps = (state) => {
+  return (
+    { items: state }
+  );
+}
+
+export default connect(mapStateToProps)(InvoiceTotals)
