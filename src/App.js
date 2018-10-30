@@ -7,9 +7,9 @@ import { Segment, Header } from 'semantic-ui-react'
 class App extends Component {
   render() {
     return (
-      <Fragment className="App">
+      <Fragment>
         <Segment color="green">
-          <Header as="H1">Import Invoice Challenge</Header>
+          <Header as="h1">Import Invoice Challenge</Header>
         </Segment>
         <InvoiceList />
         <InvoiceTotals />

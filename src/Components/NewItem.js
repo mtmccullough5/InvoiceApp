@@ -1,24 +1,62 @@
 import React, { Component } from 'react';
-import { Button, Container, Input, Icon } from 'semantic-ui-react'
+import { Button, Container, Input, Icon } from 'semantic-ui-react';
+import { addItem } from '../reduckx';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class NewItem extends Component {
-  onSubmit() {
+  state = { 
+    itemName: "",
+    itemQuantity: "",
+    itemCost: "",
+    lineCost: ""
+  }
 
+  handleSubmit = (event) => {
+    const { dispatch } = this.props 
+    event.preventDefault()
+    dispatch(addItem(this.state))
+  }
+
+  handleChange = event => {
+    const { id, value } = event.target;
+    if (id === "itemCost") {
+      const lineCostValue = value*this.state.itemQuantity
+      this.setState({ [id]: value, lineCost:lineCostValue });
+    }
+    if (id === "itemQuantity") {
+      const lineCostValue = value*this.state.itemCost
+      this.setState({ [id]: value, lineCost:lineCostValue });
+    }
+    else {
+      this.setState({ [id]: value });
+    }
   }
 
   render() {
-    return (
+  return (
       <Container>
-        <Input placeholder="Item Name"></Input>
-        <Input placeholder="Item Quantity"></Input>
-        <Input placeholder="Item Cost"></Input>
+        <Input 
+          id="itemName" 
+          placeholder="Item Name" 
+          onChange={this.handleChange}
+        />
+        <Input 
+          id="itemQuantity" 
+          placeholder="Item Quantity"
+          onChange={this.handleChange}
+        />
+        <Input 
+          id="itemCost" 
+          placeholder="Item Cost"
+          onChange={this.handleChange} 
+        />
         <span></span>
-        <Button icon>
+        <Button icon onClick={this.handleSubmit}>
           <Icon name='save'/>
         </Button>
       </Container>
     );
   }
 }
-
-export default NewItem
+export default connect()(NewItem)

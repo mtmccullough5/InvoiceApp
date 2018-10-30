@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
+import { Segment, List } from 'semantic-ui-react';
+import ListItem from './ListItem';
+import NewItem from './NewItem';
+import { connect } from 'react-redux';
 
-import ListItem from './ListItem'
-import NewItem from './NewItem'
-
-class InvoiceList extends Component {
-  render() {
+const InvoiceList= ({items}) => {
     return (
-      <div>
-        <ListItem />
-        <NewItem />
-      </div>
+      <Segment>
+        <List>
+          {items.map((item) => (
+            <ListItem key={item.id} item={item}/>
+            ))}
+          <NewItem />
+        </List>       
+      </Segment>
     );
-  }
+  
 }
 
-export default InvoiceList
+const mapStateToProps = (state) => {
+  return (
+    { items: state }
+  );
+}
+
+export default connect(mapStateToProps)(InvoiceList)

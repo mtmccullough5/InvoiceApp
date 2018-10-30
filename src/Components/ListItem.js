@@ -1,20 +1,27 @@
-import React, { Component } from 'react';
-import { Button, Container, Icon } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Icon, List } from 'semantic-ui-react';
+import { deleteItem } from '../reduckx';
+import { connect } from 'react-redux';
 
-class ListItem extends Component {
-  render() {
-    return (
-      <Container>
-        <span placeholder="Item Name"></span>
-        <span placeholder="Item Quantity"></span>
-        <span placeholder="Item Cost"></span>
-        <span></span>
-        <Button icon>
-          <Icon name='trash'/>
-        </Button>
-      </Container>
-    );
-  }
+const ListItem =({item}) => {
+  return(
+  <List.Item>
+    <span>{item.itemName}</span>
+    <span>{item.itemQuantity}</span>
+    <span>{item.itemCost}</span>
+    <span>{item.lineCost}</span>
+    <Button icon>
+      <Icon name='trash'/>
+    </Button>
+  </List.Item>
+  )
 }
 
-export default ListItem
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleDelete: (id) => {
+      dispatch(deleteItem(id))
+    }
+  }
+}
+export default connect(null,mapDispatchToProps)(ListItem)
