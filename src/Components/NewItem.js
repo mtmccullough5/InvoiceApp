@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Container, Input, Icon } from 'semantic-ui-react';
+import { Button, Container, Input, Icon, GridColumn, Table } from 'semantic-ui-react';
 import { addItem } from '../reduckx';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { ConnectableObservable } from 'rxjs';
 
 class NewItem extends Component {
   state = { 
@@ -35,27 +36,38 @@ class NewItem extends Component {
 
   render() {
   return (
-      <Container>
-        <Input 
-          id="itemName" 
-          placeholder="Item Name" 
-          onChange={this.handleChange}
-        />
-        <Input 
-          id="itemQuantity" 
-          placeholder="Item Quantity"
-          onChange={this.handleChange}
-        />
-        <Input 
-          id="itemCost" 
-          placeholder="Item Cost"
-          onChange={this.handleChange} 
-        />
+      <Table.Row>
+        <Table.Cell>
+          <Input 
+              id="itemName" 
+              placeholder="New Item"
+              onChange={this.handleChange}
+
+            />
+        </Table.Cell>
+        <Table.Cell>
+          <Input 
+            id="itemQuantity" 
+            placeholder="X"
+            onChange={this.handleChange}
+          />
+        </Table.Cell>
+        <Table.Cell>
+          <Input 
+            id="itemCost" 
+            placeholder="X.XX"
+            onChange={this.handleChange} 
+          />
+        </Table.Cell>
+        <Table.Cell></Table.Cell>
+        <Table.Cell>
+          <Button icon onClick={this.handleSubmit}>
+            <Icon name='save'/>
+          </Button>
+        </Table.Cell>
         <span></span>
-        <Button icon onClick={this.handleSubmit}>
-          <Icon name='save'/>
-        </Button>
-      </Container>
+        
+      </Table.Row>
     );
   }
 }
