@@ -7,7 +7,6 @@ const InvoiceTotals = (items) => {
   let subtotal = 0
   items.items.forEach((item) => {
     subtotal+=item.lineCost 
-    console.log(subtotal)
   })
   let tax = subtotal*taxRate
   let total = subtotal+tax

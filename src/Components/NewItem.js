@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Container, Input, Icon, GridColumn, Table } from 'semantic-ui-react';
+import { Button, Input, Icon, Table } from 'semantic-ui-react';
 import { addItem } from '../reduckx';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ConnectableObservable } from 'rxjs';
 
 class NewItem extends Component {
   state = { 
@@ -42,7 +41,6 @@ class NewItem extends Component {
               id="itemName" 
               placeholder="New Item"
               onChange={this.handleChange}
-
             />
         </Table.Cell>
         <Table.Cell>
@@ -65,8 +63,6 @@ class NewItem extends Component {
             <Icon name='save'/>
           </Button>
         </Table.Cell>
-        <span></span>
-        
       </Table.Row>
     );
   }

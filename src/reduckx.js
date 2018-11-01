@@ -7,6 +7,11 @@ export const addItem = (item) => ({
   item
 })
 
+export const updateItem = (item) => ({
+  type: 'UPDATE_ITEM',
+  item
+})
+
 export const deleteItem = (id) => ({
   type: 'DELETE_ITEM',
   id
@@ -25,10 +30,18 @@ const items = (state = [], action) => {
           lineCost: action.item.lineCost
         }
       ]
-      return newState 
+      return newState
+    case 'UPDATE_ITEM':
+      let updateState = state.map((item) => {
+        if (item.id === action.id){
+          item = action.item
+        }
+        return item
+      })
+      return updateState
     case 'DELETE_ITEM':
-      const tempItems = state.items.filter(item => item.id !== action.id)
-      return tempItems 
+      const delState = state.filter(item => item.id !== action.id)
+      return delState 
     default:
       return state
   }
