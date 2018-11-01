@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import InvoiceList from './Components/InvoiceList';
-import InvoiceTotals from './Components/InvoiceTotals';
 import { Segment, Header } from 'semantic-ui-react'
 
 class App extends Component {
@@ -9,10 +8,9 @@ class App extends Component {
     return (
       <Fragment>
         <Segment color="green">
-          <Header as="h1">Import Invoice Challenge</Header>
-        </Segment>
-        <InvoiceList />
-        <InvoiceTotals />
+          <Header as="h1">Import Invoice</Header>
+          <InvoiceList />
+        </Segment> 
       </Fragment>
     );
   }

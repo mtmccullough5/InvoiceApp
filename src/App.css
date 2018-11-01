@@ -2,4 +2,25 @@
   text-align: center;
 }
 
+::placeholder { 
+  color: black !important;
+  opacity: 1 !important;
+}
 
+input {
+  text-align: center !important;
+}
+
+#itemName {
+  text-align: left !important;
+}
+
+td {
+  padding: 1em !important;
+}
+
+.segment {
+  margin-top: 2.5% !important;
+  margin-left: 2.5% !important;
+  margin-right: 2.5% !important;
+}

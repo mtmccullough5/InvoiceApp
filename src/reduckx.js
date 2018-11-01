@@ -40,7 +40,7 @@ const items = (state = [], action) => {
       })
       return updateState
     case 'DELETE_ITEM':
-      const delState = state.filter(item => item.id !== action.id)
+      const delState = state.filter(index => index.id !== action.id)
       return delState 
     default:
       return state

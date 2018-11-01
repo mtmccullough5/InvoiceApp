@@ -1,30 +1,30 @@
 import React from 'react';
-import { Segment, Table } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import InvoiceItem from './InvoiceItem';
 import NewItem from './NewItem';
 import { connect } from 'react-redux';
+import InvoiceTotals from './InvoiceTotals';
 
 const InvoiceList= ({items}) => {
     return (
-      <Segment textAlign="center">
-        <Table>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Item</Table.HeaderCell>
-              <Table.HeaderCell>Quantity</Table.HeaderCell>
-              <Table.HeaderCell>Cost</Table.HeaderCell>
-              <Table.HeaderCell>Line Cost</Table.HeaderCell>
-              <Table.HeaderCell></Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {items.map((item) => (
-              <InvoiceItem key={item.id} item={item}/>
-              ))}
-            <NewItem />
-          </Table.Body>
-        </Table>    
-      </Segment>
+      <Table padded>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell textAlign="left" width="7">Item</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center" width="2">Quantity</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center" width="3">Cost</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center" width="3">Line Cost</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center" width="1"></Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {items.map((item) => (
+            <InvoiceItem key={item.id} item={item}/>
+            ))}
+          <NewItem />
+          <InvoiceTotals />
+        </Table.Body>
+      </Table>    
     );
   
 }

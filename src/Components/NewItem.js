@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Icon, Table } from 'semantic-ui-react';
+import { Button, Input, Icon, Table, Label } from 'semantic-ui-react';
 import { addItem } from '../reduckx';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -36,29 +36,35 @@ class NewItem extends Component {
   render() {
   return (
       <Table.Row>
-        <Table.Cell>
+        <Table.Cell textAlign="left" width="7">
           <Input 
               id="itemName" 
               placeholder="New Item"
+              fluid
               onChange={this.handleChange}
             />
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell textAlign="center" width="2">
           <Input 
             id="itemQuantity" 
             placeholder="X"
+            fluid
             onChange={this.handleChange}
           />
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell textAlign="center" width="3">
           <Input 
             id="itemCost" 
             placeholder="X.XX"
+            fluid 
+            type="text"
             onChange={this.handleChange} 
           />
         </Table.Cell>
-        <Table.Cell></Table.Cell>
-        <Table.Cell>
+        <Table.Cell textAlign="center" width="3">
+          <Input disabled fluid/>
+        </Table.Cell>
+        <Table.Cell width="1">
           <Button icon onClick={this.handleSubmit}>
             <Icon name='save'/>
           </Button>

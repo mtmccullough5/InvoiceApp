@@ -41,37 +41,40 @@ class InvoiceItem extends Component {
     let item = this.state
     return(
       <Table.Row>
-        <Table.Cell selectable>
+        <Table.Cell selectable textAlign="left" width="7">
           <Input 
             id="itemName"
             placeholder={item.itemName}
             transparent
+            fluid
             onChange={this.handleChange} 
             onBlur={this.handleUpdate}
           />
         </Table.Cell>
-        <Table.Cell selectable>
+        <Table.Cell selectable textAlign="center" width="2">
           <Input 
             id="itemQuantity"
             placeholder={item.itemQuantity} 
             transparent
+            fluid
             onChange={this.handleChange} 
             onBlur={this.handleUpdate}
           />
         </Table.Cell>
-        <Table.Cell selectable>
+        <Table.Cell selectable textAlign="center" width="3">
           <Input 
             id="itemCost"
             placeholder={item.itemCost}
             transparent
+            fluid
             onChange={this.handleChange} 
             onBlur={this.handleUpdate}
           />
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell textAlign="center" width="3">
           {item.lineCost}
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell width="1">
           <Button icon onClick={this.handleDelete}>
             <Icon name='trash'/>
           </Button>

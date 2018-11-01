@@ -1,5 +1,5 @@
-import React from 'react';
-import { Segment, List, ListContent} from 'semantic-ui-react'
+import React, {Fragment} from 'react';
+import { Table } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 
 const InvoiceTotals = (items) => {
@@ -11,13 +11,24 @@ const InvoiceTotals = (items) => {
   let tax = subtotal*taxRate
   let total = subtotal+tax
   return (
-    <Segment>
-      <List>
-        <ListContent>Subtotal: {subtotal}</ListContent>
-        <ListContent>Tax: {tax}</ListContent>
-        <ListContent>Total: {total}</ListContent>
-      </List>
-    </Segment>
+    <Fragment>
+      <Table.Row><br /></Table.Row>
+      <Table.Row textAlign="right">
+        <Table.Cell width="7"></Table.Cell>
+        <Table.Cell width="2"></Table.Cell>
+        <Table.Cell width="3">
+          Subtotal: <br /> 
+          Tax:      <br />
+          Total:    <br />
+        </Table.Cell>
+        <Table.Cell width="3">
+          {subtotal} <br />
+          {tax}      <br />
+          {total}    <br />
+        </Table.Cell>
+        <Table.Cell width="1"><br /></Table.Cell>
+      </Table.Row>
+    </Fragment>
   );
 }
 
