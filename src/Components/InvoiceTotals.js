@@ -13,9 +13,9 @@ class InvoiceTotals extends Component {
       subtotal+=Number.parseFloat(item.lineCost) 
     })}
     let taxAmount = subtotal*taxRate
-    subtotal = Number.parseFloat(subtotal).toFixed(2)
     const tax = Number.parseFloat(taxAmount).toFixed(2)
     let total = Number.parseFloat(subtotal+taxAmount).toFixed(2)
+    subtotal = Number.parseFloat(subtotal).toFixed(2)
 
     return (
       <Fragment>
