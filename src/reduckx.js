@@ -3,13 +3,24 @@ let nextItemId = 0
 
 export const addItem = (item) => ({
   type: 'ADD_ITEM',
-  id: nextItemId++,
-  item
+  newItem: {
+    id: nextItemId++,
+    itemName: item.itemName,
+    itemQuantity: Number.parseFloat(item.itemQuantity).toFixed(0),
+    itemCost: Number.parseFloat(item.itemCost).toFixed(2),
+    lineCost: Number.parseFloat(item.lineCost).toFixed(2)
+  }
 })
 
 export const updateItem = (item) => ({
   type: 'UPDATE_ITEM',
-  item
+  updateItem: {
+    id: item.id,
+    itemName: item.itemName,
+    itemQuantity: Number.parseFloat(item.itemQuantity).toFixed(0),
+    itemCost: Number.parseFloat(item.itemCost).toFixed(2),
+    lineCost: Number.parseFloat(item.lineCost).toFixed(2)
+  }
 })
 
 export const deleteItem = (id) => ({
@@ -23,18 +34,13 @@ const items = (state = [], action) => {
     case 'ADD_ITEM':
       let newState = [
         ...state,
-        { id: action.id,
-          itemName: action.item.itemName,
-          itemQuantity: action.item.itemQuantity,
-          itemCost: action.item.itemCost,
-          lineCost: action.item.lineCost
-        }
+        action.newItem
       ]
       return newState
     case 'UPDATE_ITEM':
       let updateState = state.map((item) => {
-        if (item.id === action.id){
-          item = action.item
+        if (item.id === action.updateItem.id){
+          item = action.updateItem
         }
         return item
       })

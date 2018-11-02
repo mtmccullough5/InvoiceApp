@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Button, Icon, Table, Input } from 'semantic-ui-react';
 import { updateItem, deleteItem } from '../reduckx';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 
 class InvoiceItem extends Component {
   state = {}
@@ -10,15 +11,19 @@ class InvoiceItem extends Component {
     this.setState(this.props.item)
   }
 
+  numberClean = (num,x) => {
+    return Number.parseFloat(num).toFixed(x)
+  }
+  
   handleChange = event => {
     const { id, value } = event.target;
     if (id === "itemCost") {
-      const lineCostValue = value*this.state.itemQuantity
-      this.setState({ [id]: value, lineCost:lineCostValue });
+      const lineCostValue = this.numberClean(value*this.state.itemQuantity,2)
+      this.setState({ [id]: this.numberClean(value,2), lineCost:lineCostValue });
     }
     if (id === "itemQuantity") {
-      const lineCostValue = value*this.state.itemCost
-      this.setState({ [id]: value, lineCost:lineCostValue });
+      const lineCostValue = this.numberClean(value*this.state.itemCost,2)
+      this.setState({ [id]: this.numberClean(value,0), lineCost:lineCostValue });
     }
     else {
       this.setState({ [id]: value });
@@ -54,7 +59,7 @@ class InvoiceItem extends Component {
         <Table.Cell selectable textAlign="center" width="2">
           <Input 
             id="itemQuantity"
-            placeholder={item.itemQuantity} 
+            placeholder={this.props.item.itemQuantity} 
             transparent
             fluid
             onChange={this.handleChange} 
@@ -64,7 +69,7 @@ class InvoiceItem extends Component {
         <Table.Cell selectable textAlign="center" width="3">
           <Input 
             id="itemCost"
-            placeholder={item.itemCost}
+            placeholder={this.props.item.itemCost}
             transparent
             fluid
             onChange={this.handleChange} 
@@ -84,4 +89,11 @@ class InvoiceItem extends Component {
   }
 }
 
+InvoiceItem.propTypes = {
+  item: PropTypes.shape({
+    itemName: PropTypes.isRequired,
+    itemQuantity: PropTypes.isRequired,
+    itemCost: PropTypes.isRequired
+  }) 
+}
 export default connect()(InvoiceItem)

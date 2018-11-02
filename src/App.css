@@ -11,7 +11,7 @@ input {
   text-align: center !important;
 }
 
-#itemName {
+.itemName {
   text-align: left !important;
 }
 

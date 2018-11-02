@@ -22,7 +22,7 @@ const InvoiceList= ({items}) => {
             <InvoiceItem key={item.id} item={item}/>
             ))}
           <NewItem />
-          <InvoiceTotals />
+          <InvoiceTotals items={items}/>
         </Table.Body>
       </Table>    
     );

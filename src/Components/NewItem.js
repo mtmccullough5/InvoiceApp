@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Icon, Table, Label } from 'semantic-ui-react';
+import { Button, Input, Icon, Table } from 'semantic-ui-react';
 import { addItem } from '../reduckx';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -18,15 +18,21 @@ class NewItem extends Component {
     dispatch(addItem(this.state))
   }
 
+  numberClean = (num,x) => {
+    return Number.parseFloat(num).toFixed(x)
+  }
+  
   handleChange = event => {
     const { id, value } = event.target;
     if (id === "itemCost") {
-      const lineCostValue = value*this.state.itemQuantity
-      this.setState({ [id]: value, lineCost:lineCostValue });
+      const lineCostValue = this.numberClean(value*this.state.itemQuantity,2)
+      const newValue = this.numberClean(value,2)
+      this.setState({ [id]: newValue, lineCost:lineCostValue });
     }
     if (id === "itemQuantity") {
-      const lineCostValue = value*this.state.itemCost
-      this.setState({ [id]: value, lineCost:lineCostValue });
+      const lineCostValue = this.numberClean(value*this.state.itemCost,2)
+      const newValue = this.numberClean(value,0)
+      this.setState({ [id]: newValue, lineCost:lineCostValue });
     }
     else {
       this.setState({ [id]: value });
@@ -73,4 +79,13 @@ class NewItem extends Component {
     );
   }
 }
+
+NewItem.propTypes = {
+  item: PropTypes.shape({
+    itemName: PropTypes.string.isRequired,
+    itemQuantity: PropTypes.isRequired,
+    itemCost: PropTypes.isRequired
+  }) 
+}
+
 export default connect()(NewItem)
